@@ -133,10 +133,10 @@ const PatientList: React.FC = () => {
             <button
               key={i + 1}
               onClick={() => handlePageClick(i + 1)}
-              className={`px-4 py-2 rounded-lg ${
+              className={`px-4 py-2 rounded-sm mr-2 ${
                 currentPage === i + 1
-                  ? "bg-light-tail text-white"
-                  : "text-tail-blue"
+                  ? "shadow-custom-5 text-dark-royal-blue font-bold"
+                  : ""
               }`}
             >
               {i + 1}

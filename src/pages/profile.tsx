@@ -53,9 +53,9 @@ const PatientProfile: React.FC = () => {
             </button>
           </div>
           </div>
-          <div className="space-x-48 flex ">
+          <div className="space-x-16 flex ">
             <div>
-              <h2 className="text-xl text-dark-royal-blue font-bold">{patient.firstName} Mansar</h2>
+              <h2 className="text-xl text-dark-royal-blue font-bold">{patient.firstName} {patient.lastName}</h2>
               <p className="text-dark-royal-blue font-bold">Sexe<span className="text-light-tail font-bold"> {patient.gender === 'M' ? 'Homme' : 'Femme'}</span></p>
             </div>
             <div>
@@ -81,12 +81,12 @@ const PatientProfile: React.FC = () => {
         </div>
       </div>
 
-      <div className="grid grid-cols-5 gap-8  divide-x divide-light-grey  shadow-custom-2 text-gray-500 font-semibold bg-white mt-5 w-full h-16">
-        <button className="px-4 flex items-center space-x-2 " >
+      <div className="grid grid-cols-5  divide-x divide-light-grey  shadow-custom-2 text-gray-500 font-semibold bg-white mt-5 w-full h-16">
+        <button className="px-4 flex items-center space-x-2 bg-light-blue-1 justify-center" >
           <img src={UserIcon} alt="Fiche Icon" className="w-5 h-5" />
-          <span>Fiche patient</span>
+          <span className="text-light-tail">Fiche patient</span>
         </button>
-        <button className="px-4 flex items-center space-x-2">
+        <button className="px-4 flex items-center space-x-2 justify-center">
           <img
             src={heart} 
             alt="Antécédents Icon"
@@ -94,7 +94,7 @@ const PatientProfile: React.FC = () => {
           />
           <span>Antécédents</span>
         </button>
-        <button className="px-4 flex items-center space-x-2">
+        <button className="px-4 flex items-center space-x-2 justify-center">
           <img
            src={earphone} 
             alt="Constantes Icon"
@@ -102,7 +102,7 @@ const PatientProfile: React.FC = () => {
           />
           <span>Constantes</span>
         </button>
-        <button className="px-4 flex items-center space-x-2">
+        <button className="px-4 flex items-center space-x-2 justify-center">
           <img
                src={depistage} 
             alt="Dépistage Icon"
@@ -110,7 +110,7 @@ const PatientProfile: React.FC = () => {
           />
           <span>Dépistage</span>
         </button>
-        <button className="px-4 flex items-center space-x-2">
+        <button className="px-4 flex items-center space-x-2 justify-center">
           <img
             src={cons} 
             alt="Compte rendu Icon"

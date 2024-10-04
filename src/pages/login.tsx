@@ -42,7 +42,7 @@ const Login: React.FC = () => {
 
         <form onSubmit={handleLogin} className=" bg-white shadow-lg w-[30%] p-10 flex flex-col rounded-lg font-inter h-[80%] mt-16 ml-[17rem]">
           <h1 className="text-center text-tail-blue text-[21px] p-4">Connectez-vous à votre compte</h1>
-          <div className="mb-4">
+          <div className="mb-4 relative">
             <select id="location"
               className="w-full p-2 border-[1.67px] border-tail-blue rounded-[7px] h-[50px] text-light-tail appearance-none focus:outline-none focus:border-tail-blue focus:border-[2px]"
               value={userData.location}
@@ -58,9 +58,9 @@ const Login: React.FC = () => {
           </div>
           </div>
 
-          <div className="mb-4">
+          <div className="mb-4 relative">
             <select id="box"
-              className="w-full p-2 border-[1.67px] border-tail-blue rounded-[7px] h-[50px] text-light-tail appearance-none focus:outline-none focus:border-tail-blue focus:border-[2px]"
+              className=" w-full p-2 border-[1.67px] border-tail-blue rounded-[7px] h-[50px] text-light-tail appearance-none focus:outline-none focus:border-tail-blue focus:border-[2px]"
               value={userData.box}
             onChange={handleChange}
             >
