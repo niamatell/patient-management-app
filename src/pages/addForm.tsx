@@ -37,7 +37,7 @@ const calculateAge = (birthDateString: string): number => {
 const AddFolder: React.FC = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
+  const [age, setAge] = useState<number | null>(null);
   const [formData, setFormData] = useState<FormData>({
     idNumber: "",
     lastName: "",
@@ -55,66 +55,25 @@ const AddFolder: React.FC = () => {
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
-    setFormData((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
+    setFormData(prevData => ({ ...prevData, [name]: value }));
+  };
+
+  const handleBlur = () => {
+    const { birthDate } = formData;
+    if (birthDate.length === 10 && /^\d{2}\/\d{2}\/\d{4}$/.test(birthDate)) {
+      setAge(calculateAge(birthDate));
+    } else {
+      setAge(null);
+    }
   };
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    
-    dispatch(addPatient({
-      id: Date.now().toString(),
-      dateOpened: new Date().toLocaleDateString(),
-      lastName: formData.lastName,
-      firstName: formData.firstName,
-      birthDate: formData.birthDate,
-      gender: formData.gender,
-      idNumber: formData.idNumber,
-      coverage: formData.coverage,
-      lastUpdate: new Date().toLocaleString(), 
-      region: formData.region,              
-      city: formData.city,                     
-      commune: formData.commune,               
-      mobile: formData.mobile,                  
-      address: formData.address,           
-      addressComplement: formData.addressComplement,
-    }));
-
-    setFormData({
-      idNumber: "",
-      lastName: "",
-      firstName: "",
-      gender: "Homme",
-      birthDate: "",
-      coverage: "CNOPS",
-      region: "",
-      city: "",
-      commune: "",
-      mobile: "",
-      address: "",
-      addressComplement: "",
-    });
-  
+    dispatch(addPatient({ ...formData, id: Date.now().toString(), dateOpened: new Date().toLocaleDateString(), lastUpdate: new Date().toLocaleString() }));
+    setFormData({ idNumber: "", lastName: "", firstName: "", gender: "Homme", birthDate: "", coverage: "CNOPS", region: "", city: "", commune: "", mobile: "", address: "", addressComplement: "" });
     navigate("/patients");
   };
-  const [formatData, setFormatData] = useState({ birthDate: "" });
-  const [age, setAge] = useState<number | null>(null); 
-  const handleBlur = () => {
-    const birthDate = formatData.birthDate;
-    if (birthDate.length === 10 && /^\d{4}-\d{2}-\d{2}$/.test(birthDate)) {
-      const calculatedAge = calculateAge(birthDate);
-      setAge(calculatedAge);
-    } else {
-      setAge(null); 
-    }
-  };
-  const handleDateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    setFormatData({ ...formatData, [name]: value });
-  };
-  
+ 
 
   return (
     <div className="p-10 my-4 bg-custom-gradient-3  w-full rounded-[16px] min-h-screen ">
@@ -193,9 +152,9 @@ const AddFolder: React.FC = () => {
                 <input
               type="text"
               name="birthDate"
-              placeholder="YYYY-MM-DD"
-              value={formatData.birthDate}
-              onChange={handleDateChange}
+              placeholder="DD/MM/YYYY"
+              value={formData.birthDate}
+              onChange={handleChange}
               onBlur={handleBlur}
               className="border-[1.4px] border-gray rounded-md w-full p-2"
               required

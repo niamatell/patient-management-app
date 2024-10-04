@@ -48,8 +48,8 @@ const PatientProfile: React.FC = () => {
             <div className=" flex items-center justify-center">
               <img src={patientpic} />
             </div>
-            <button className="absolute right-[-20px] bottom-14  p-2  ">
-            <img src={editpatient}  />
+            <button className="absolute right-[-20px] bottom-14  p-2 ">
+            <img src={editpatient}/>
             </button>
           </div>
           </div>
@@ -82,7 +82,7 @@ const PatientProfile: React.FC = () => {
       </div>
 
       <div className="grid grid-cols-5 gap-8  divide-x divide-light-grey  shadow-custom-2 text-gray-500 font-semibold bg-white mt-5 w-full h-16">
-        <button className="px-4  flex items-center space-x-2">
+        <button className="px-4 flex items-center space-x-2 " >
           <img src={UserIcon} alt="Fiche Icon" className="w-5 h-5" />
           <span>Fiche patient</span>
         </button>
