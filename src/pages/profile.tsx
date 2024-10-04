@@ -4,8 +4,10 @@ import depistage from "../assets/depistage.svg";
 import earphone from "../assets/earphone.svg";
 import heart from "../assets/heart.svg";
 import calendar from "../assets/calendar.svg";
+import calendrier from "../assets/calendrier.svg";
 import UserIcon from "../assets/user-circle.svg";
 import cons from "../assets/cons.svg";
+import consultation from "../assets/consultation.svg";
 import edit from "../assets/edit.svg";
 import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
@@ -47,12 +49,12 @@ const PatientProfile: React.FC = () => {
 
         <div className="space-x-4 flex">
           <button className="bg-dark-royal-blue text-white px-7 py-3 rounded-[36px] h-[52px] flex gap-2">
-            <img src={calendar} alt="Signal Icon" className="w-6 h-6" />
+            <img src={calendrier} alt="Signal Icon" className="w-6 h-6" />
             Réserver un rendez-vous
           </button>
           <button className="bg-custom-gradient-4 text-white px-7 py-3 rounded-[36px] h-[52px] flex gap-2">
             <img
-              src={cons}
+              src={consultation}
               alt="consultation"
               className="w-6 h-6"
             />
@@ -137,32 +139,32 @@ const PatientProfile: React.FC = () => {
           </div>
           <div className="col-span-1">
             <p className="text-lg text-tail-blue mb-2 font-medium">Région</p>
-            <p className="text-lg">{patient.lastName}</p>
+            <p className="text-lg">{patient.region}</p>
           </div>
           <div className="col-span-1">
             <p className="text-lg text-tail-blue mb-2 font-medium">Ville</p>
-            <p className="text-lg">{patient.coverage}</p>
+            <p className="text-lg">{patient.city}</p>
           </div>
           <div className="col-span-1">
             <p className="text-lg text-tail-blue mb-2 font-medium">Commune</p>
-            <p className="text-lg">{patient.lastName}</p>
+            <p className="text-lg">{patient.commune}</p>
           </div>
         </div>
 
         <div className="grid grid-cols-5 gap-6 mt-3 ml-9">
           <div className="col-span-1">
             <p className="text-lg text-tail-blue mb-2 font-medium">Téléphone mobile</p>
-            <p className="text-lg">0637346201</p>
+            <p className="text-lg">{patient.mobile}</p>
           </div>
 
           <div className="col-span-1">
             <p className="text-lg text-tail-blue mb-2 font-medium">Adresse</p>
-            <p className="text-lg">93 Rue Meskallilie, Casablanca 20250</p>
+            <p className="text-lg">{patient.address}</p>
           </div>
           <div className="col-span-1"></div>
           <div className="col-span-1">
             <p className="text-lg text-tail-blue mb-2 font-medium">Complément d’adresse</p>
-            <p className="text-lg">93 Rue Meskallilie, Casablanca 20250</p>
+            <p className="text-lg">{patient.addressComplement}</p>
           </div>
           <div className="col-span-1"></div>
         </div>

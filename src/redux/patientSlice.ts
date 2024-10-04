@@ -10,6 +10,12 @@ interface Patient {
   idNumber: string;
   coverage: string;
   lastUpdate: string;
+  region: string;        
+  city: string;                
+  commune: string;            
+  mobile: string;              
+  address: string;              
+  addressComplement: string; 
 }
 
 interface PatientState {
@@ -28,6 +34,12 @@ const initialState: PatientState = {
       idNumber: "BK653575",
       coverage: "CNOPS",
       lastUpdate: "05/12/2023 12:45",
+      region: "Region 1",           
+      city: "City 1",                
+      commune: "Commune 1",          
+      mobile: "123456789",         
+      address: "123 Main St",       
+      addressComplement: "Apt 4B",
     },
     {
       id: "2",
@@ -39,6 +51,12 @@ const initialState: PatientState = {
       idNumber: "BK326584",
       coverage: "CNSS",
       lastUpdate: "05/12/2023 12:45",
+      region: "Region 2",           
+      city: "City 2",                
+      commune: "Commune 2",          
+      mobile: "123456789",         
+      address: "123 Main St",       
+      addressComplement: "Apt 4B",
     },
     {
       id: "3",
@@ -50,6 +68,12 @@ const initialState: PatientState = {
       idNumber: "BK125863",
       coverage: "CNSS",
       lastUpdate: "05/12/2023 12:45",
+      region: "Region 3",           
+      city: "City 3",                
+      commune: "Commune 3",          
+      mobile: "123456789",         
+      address: "123 Main St",       
+      addressComplement: "Apt 4B",
     },
     {
       id: "4",
@@ -61,6 +85,12 @@ const initialState: PatientState = {
       idNumber: "BK224108",
       coverage: "CNSS",
       lastUpdate: "05/12/2023 12:45",
+      region: "Region 1",           
+      city: "City 1",                
+      commune: "Commune 1",          
+      mobile: "123456789",         
+      address: "123 Main St",       
+      addressComplement: "Apt 4B",
     },
     {
       id: "5",
@@ -72,6 +102,12 @@ const initialState: PatientState = {
       idNumber: "BK235114",
       coverage: "CNOPS",
       lastUpdate: "05/12/2023 12:45",
+      region: "Region 2",           
+      city: "City 2",                
+      commune: "Commune 2",          
+      mobile: "123456789",         
+      address: "123 Main St",       
+      addressComplement: "Apt 4B",
     },
     {
       id: "6",
@@ -83,6 +119,12 @@ const initialState: PatientState = {
       idNumber: "BK121416",
       coverage: "CNOPS",
       lastUpdate: "05/12/2023 12:45",
+      region: "Region 3",           
+      city: "City 3",                
+      commune: "Commune 3",          
+      mobile: "123456789",         
+      address: "123 Main St",       
+      addressComplement: "Apt 4B",
     },
     {
       id: "7",
@@ -94,6 +136,12 @@ const initialState: PatientState = {
       idNumber: "BK121416",
       coverage: "CNOPS",
       lastUpdate: "05/12/2023 12:45",
+      region: "Region 1",           
+      city: "City 1",                
+      commune: "Commune 1",          
+      mobile: "123456789",         
+      address: "123 Main St",       
+      addressComplement: "Apt 4B",
     },
     {
       id: "8",
@@ -105,6 +153,12 @@ const initialState: PatientState = {
       idNumber: "BK653575",
       coverage: "CNOPS",
       lastUpdate: "05/12/2023 12:45",
+      region: "Region 2",           
+      city: "City 2",                
+      commune: "Commune 2",          
+      mobile: "123456789",         
+      address: "123 Main St",       
+      addressComplement: "Apt 4B",
     },
     {
       id: "9",
@@ -116,6 +170,12 @@ const initialState: PatientState = {
       idNumber: "BK326584",
       coverage: "CNSS",
       lastUpdate: "05/12/2023 12:45",
+      region: "Region 3",           
+      city: "City 3",                
+      commune: "Commune 3",          
+      mobile: "123456789",         
+      address: "123 Main St",       
+      addressComplement: "Apt 4B",
     },
     {
       id: "10",
@@ -127,6 +187,12 @@ const initialState: PatientState = {
       idNumber: "BK125863",
       coverage: "CNSS",
       lastUpdate: "05/12/2023 12:45",
+      region: "Region 1",           
+      city: "City 1",                
+      commune: "Commune 1",          
+      mobile: "123456789",         
+      address: "123 Main St",       
+      addressComplement: "Apt 4B",
     },
     {
       id: "11",
@@ -138,6 +204,12 @@ const initialState: PatientState = {
       idNumber: "BK224108",
       coverage: "CNSS",
       lastUpdate: "05/12/2023 12:45",
+      region: "Region 2",           
+      city: "City 2",                
+      commune: "Commune 2",          
+      mobile: "123456789",         
+      address: "123 Main St",       
+      addressComplement: "Apt 4B",
     },
     {
       id: "12",
@@ -149,6 +221,12 @@ const initialState: PatientState = {
       idNumber: "BK235114",
       coverage: "CNOPS",
       lastUpdate: "05/12/2023 12:45",
+      region: "Region 3",           
+      city: "City 3",                
+      commune: "Commune 3",          
+      mobile: "123456789",         
+      address: "123 Main St",       
+      addressComplement: "Apt 4B",
     },
   ],
 };

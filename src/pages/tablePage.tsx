@@ -46,14 +46,14 @@ const PatientList: React.FC = () => {
   return (
     <div className="min-h-screen bg-custom-gradient-3 shadow-custom-3 rounded-[16px] p-10 my-4">
       <div className="flex flex-col md:flex-row justify-center md:justify-between items-center gap-4 h-auto md:h-24">
-        <div className="w-full md:w-1/3 p-4 rounded-lg text-white flex items-center gap-2">
+        <div className="w-full md:w-1/2 p-4 rounded-lg text-white flex  flex-col sm:flex-row items-center gap-4">
           <img src={recherche} alt="recherche" />
           <h1 className="text-tail-blue font-bold font-Ubuntu text-[24px]">
             Recherche de patients
           </h1>
         </div>
 
-        <div className="w-full md:w-1/2 flex flex-col sm:flex-row items-center gap-4 justify-start">
+        <div className="w-full md:w-3/4 flex flex-col sm:flex-row items-center gap-4 justify-start">
           <div className="mb-1 relative w-2/3">
             <input
               type="text"
@@ -66,22 +66,22 @@ const PatientList: React.FC = () => {
               <img src={search} alt="search-icon" />
             </span>
           </div>
-
           <button className="border-2 border-tail-blue rounded-[30px] text-light-tail h-[50px] px-4 py-2 flex items-center">
             <img src={filter} alt="filter" />
             &nbsp; &nbsp;Filtre
           </button>
         </div>
 
-        <div className="w-[full] md:w-auto p-4 rounded-lg text-white">
-          <button className="bg-light-tail text-white px-4 py-2 rounded-[20px] flex items-center" onClick={() => navigate("/addpatient")}>
+        <div className="w-full md:w-1/2 p-4 flex flex-col sm:flex-row  rounded-lg text-white gap-4 justify-end">
+          <button className="bg-light-tail text-white px-4 py-2 rounded-[20px] flex items-center  " onClick={() => navigate("/addpatient")}>
             <img src={nouveauPatient} alt="nouveau-patient" />
-            <span>&nbsp; Nouveau dossier</span>
+            <span>&nbsp;Nouveau dossier</span>
           </button>
         </div>
       </div>
 
-      <div className="overflow-x-auto border-2 border-tail-blue rounded-[10px] p-8 mt-4">
+
+      <div className="overflow-x-auto border-[1.4px] border-tail-blue rounded-[10px] p-8 mt-4">
         <table className="min-w-full table-auto">
           <thead>
             <tr className="w-full text-light-tail items-center text-center">
@@ -101,11 +101,11 @@ const PatientList: React.FC = () => {
                 <tr
                   key={index}
                   onClick={() => handleRowClick(patient.id)}
-                  className={`cursor-pointer border-t font-Ubuntu font-bold text-[16px] text-tail-blue text-center ${
-                    index % 2 === 0 ? "bg-[#d9e3ec]" : "bg-transparent"
+                  className={`cursor-pointer  font-Ubuntu font-bold text-[16px] text-tail-blue text-center  ${
+                    index % 2 === 0 ? "bg-[#50799E1C] bg-opacity-30" : "bg-transparent"
                   }`}
                 >
-                  <td className="p-3">{patient.dateOpened}</td>
+                  <td className="p-3 ">{patient.dateOpened}</td>
                   <td className="p-3">{patient.lastName}</td>
                   <td className="p-3">{patient.firstName}</td>
                   <td className="p-3">{patient.birthDate}</td>
@@ -115,6 +115,7 @@ const PatientList: React.FC = () => {
                   <td className="p-3">{patient.lastUpdate}</td>
                 </tr>
               ))
+
             ) : (
               <tr>
                 <td colSpan={8} className="p-3 text-center text-red-500">
@@ -126,7 +127,7 @@ const PatientList: React.FC = () => {
         </table>
       </div>
 
-      <div className="w-full bg-white flex justify-end mt-4">
+      <div className="w-full bg-white flex justify-end mt-4 shadow-custom-2 rounded-md">
         <div className="flex items-center">
           {Array.from({ length: totalPages }, (_, i) => (
             <button

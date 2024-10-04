@@ -74,6 +74,12 @@ const AddFolder: React.FC = () => {
       idNumber: formData.idNumber,
       coverage: formData.coverage,
       lastUpdate: new Date().toLocaleString(), 
+      region: formData.region,              
+      city: formData.city,                     
+      commune: formData.commune,               
+      mobile: formData.mobile,                  
+      address: formData.address,           
+      addressComplement: formData.addressComplement,
     }));
 
     setFormData({
