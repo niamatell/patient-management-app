@@ -1,8 +1,9 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux"; // Import useDispatch
-import { addPatient } from "../redux/patientSlice"; // Import the addPatient action
+import { useDispatch } from "react-redux";
+import { addPatient } from "../redux/patientSlice"; 
 import dossier from "../assets/dossier.svg";
 import { useNavigate } from "react-router-dom";
+import select from '../assets/select.svg';
 
 interface FormData {
   idNumber: string;
@@ -18,6 +19,20 @@ interface FormData {
   address: string;
   addressComplement: string;
 }
+const calculateAge = (birthDateString: string): number => {
+    const birthDate = new Date(birthDateString);
+    const today = new Date();
+    let age = today.getFullYear() - birthDate.getFullYear();
+    const monthDifference = today.getMonth() - birthDate.getMonth();
+  
+    if (
+      monthDifference < 0 ||
+      (monthDifference === 0 && today.getDate() < birthDate.getDate())
+    ) {
+      age--;
+    }
+    return age;
+  };
 
 const AddFolder: React.FC = () => {
   const dispatch = useDispatch();
@@ -78,14 +93,30 @@ const AddFolder: React.FC = () => {
   
     navigate("/patients");
   };
+  const [formatData, setFormatData] = useState({ birthDate: "" });
+  const [age, setAge] = useState<number | null>(null); 
+  const handleBlur = () => {
+    const birthDate = formatData.birthDate;
+    if (birthDate.length === 10 && /^\d{4}-\d{2}-\d{2}$/.test(birthDate)) {
+      const calculatedAge = calculateAge(birthDate);
+      setAge(calculatedAge);
+    } else {
+      setAge(null); 
+    }
+  };
+  const handleDateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setFormatData({ ...formatData, [name]: value });
+  };
+  
 
   return (
-    <div className="p-10 my-4 bg-custom-gradient-3 custom-div w-full rounded-[16px] min-h-screen ">
+    <div className="p-10 my-4 bg-custom-gradient-3  w-full rounded-[16px] min-h-screen ">
       <div className="flex flex-col md:flex-row justify-center md:justify-between items-center h-auto md:h-24">
         <div className="flex justify-center items-center gap-4 h-24">
           <div className="w-full p-4 rounded-lg text-white flex items-center gap-2">
             <img src={dossier} alt="folder" />
-            <h1 className="text-tail-blue font-bold font-ubuntu">
+            <h1 className="text-tail-blue font-bold font-ubuntu text-[24px]">
               Nouveau dossier
             </h1>
           </div>
@@ -94,118 +125,128 @@ const AddFolder: React.FC = () => {
       <div className="overflow-x-auto rounded-[10px] p-6">
         <form className="grid grid-cols-4 gap-6" onSubmit={handleSubmit}>
           <div>
-            <label className="block text-tail-blue mb-2 font-medium">CINE*</label>
+            <label className="block text-tail-blue mb-2 font-medium">CINE<span className="text-light-tail">*</span></label>
             <input
               type="text"
               name="idNumber"
               value={formData.idNumber}
               onChange={handleChange}
-              className="border border-gray rounded-md w-full p-2"
+              className="border-[1.4px] border-gray rounded-md w-full p-2"
               placeholder="Enter CINE"
               required
             />
           </div>
 
           <div>
-            <label className="block text-tail-blue mb-2 font-medium">Nom*</label>
+            <label className="block text-tail-blue mb-2 font-medium">Nom<span className="text-light-tail">*</span></label>
             <input
               type="text"
               name="lastName"
               value={formData.lastName}
               onChange={handleChange}
-              className="border border-gray rounded-md w-full p-2"
+              className="border-[1.4px] border-gray rounded-md w-full p-2"
               placeholder="Enter Nom"
               required
             />
           </div>
 
           <div>
-            <label className="block text-steel-blue mb-2 font-medium">Prénom*</label>
+            <label className="block text-tail-blue mb-2 font-medium">Prénom<span className="text-light-tail">*</span></label>
             <input
               type="text"
               name="firstName"
               value={formData.firstName}
               onChange={handleChange}
-              className="border border-gray rounded-md w-full p-2"
+              className="border-[1.4px] border-gray rounded-md w-full p-2"
               placeholder="Enter Prénom"
               required
             />
           </div>
 
-          <div>
-            <label className="block text-tail-blue mb-2 font-medium">Sexe*</label>
+          <div className="relative">
+            <label className="block text-tail-blue mb-2 font-medium">Sexe<span className="text-light-tail">*</span></label>
             <select
               name="gender"
               value={formData.gender}
               onChange={handleChange}
-              className="border border-gray rounded-md w-full p-2"
+              className=" border-[1.4px] border-gray rounded-md w-full p-2 appearance-none focus:outline-none "
               required
             >
               <option value="Homme">Homme</option>
               <option value="Femme">Femme</option>
             </select>
+            <div className="absolute top-2/3 right-4 w-[11.11px] h-[19.28px]  transform  clip-path-triangle">
+            <img src={select} alt="select" />
+          </div>
+
           </div>
 
           <div>
-            <label className="block text-tail-blue mb-2 font-medium">Date de naissance*</label>
-            <input
-              type="date"
+            <label className="block text-tail-blue mb-2 font-medium">Date de naissance<span className="text-light-tail">*</span></label>
+            <div className="flex">
+                <input
+              type="text"
               name="birthDate"
-              value={formData.birthDate}
-              onChange={handleChange}
-              className="border border-gray rounded-md w-full p-2"
+              placeholder="YYYY-MM-DD"
+              value={formatData.birthDate}
+              onChange={handleDateChange}
+              onBlur={handleBlur}
+              className="border-[1.4px] border-gray rounded-md w-full p-2"
               required
-            />
+            /> <button className="bg-tail-blue rounded-md text-white p-2 mx-2 w-1/2"> {age !== null ? `${age} ans` : "0 ans"}</button></div>
           </div>
 
           <div className="relative">
-            <label className="block text-tail-blue mb-2 font-medium">Couverture*</label>
+            <label className="block text-tail-blue mb-2 font-medium">Couverture<span className="text-light-tail">*</span></label>
             <select
               name="coverage"
               value={formData.coverage}
               onChange={handleChange}
-              className="border border-gray rounded-md w-full p-2"
+              className="border-[1.4px] border-gray rounded-md w-full p-2 appearance-none focus:outline-none"
               required
             >
               <option value="CNOPS">CNOPS</option>
               <option value="CNSS">CNSS</option>
             </select>
+            <div className="absolute top-2/3 right-4 w-[11.11px] h-[19.28px]  transform  clip-path-triangle">
+            <img src={select} alt="select" />
+          </div>
           </div>
 
           <div>
-            <label className="block text-tail-blue mb-2 font-medium">Région*</label>
+            <label className="block text-tail-blue mb-2 font-medium">Région<span className="text-light-tail">*</span></label>
             <input
               type="text"
               name="region"
               value={formData.region}
               onChange={handleChange}
-              className="border border-gray rounded-md w-full p-2"
+              className="border-[1.4px] border-gray rounded-md w-full p-2"
               placeholder="Enter Région"
               required
             />
           </div>
 
           <div>
-            <label className="block text-tail-blue mb-2 font-medium">Ville*</label>
+            <label className="block text-tail-blue mb-2 font-medium">Ville<span className="text-light-tail">*</span></label>
             <input
               type="text"
               name="city"
               value={formData.city}
               onChange={handleChange}
-              className="border border-gray rounded-md w-full p-2"
+              className="border-[1.4px] border-gray rounded-md w-full p-2"
               placeholder="Enter Ville"
               required
             />
           </div>
 
           <div>
-            <label className="block text-tail-blue mb-2 font-medium">Commune*</label>
+            <label className="block text-tail-blue mb-2 font-medium">Commune<span className="text-light-tail">*</span></label>
             <input
               type="text"
               name="commune"
               value={formData.commune}
               onChange={handleChange}
-              className="border border-gray-300 rounded-md w-full p-2"
+              className="border-[1.4px] border-gray rounded-md w-full p-2"
               placeholder="Enter Commune"
             />
           </div>
@@ -217,7 +258,7 @@ const AddFolder: React.FC = () => {
               name="mobile"
               value={formData.mobile}
               onChange={handleChange}
-              className="border border-gray rounded-md w-full p-2"
+              className="border-[1.4px] border-gray rounded-md w-full p-2"
               placeholder="Enter Téléphone mobile"
             />
           </div>
@@ -229,30 +270,34 @@ const AddFolder: React.FC = () => {
               name="address"
               value={formData.address}
               onChange={handleChange}
-              className="border border-gray rounded-md w-full p-2"
+              className="border-[1.4px] border-gray rounded-md w-full p-2"
               placeholder="Enter Adresse"
             />
           </div>
 
           <div className="col-span-4 ">
-            <label className="block text-tail-blue mb-2 font-medium">Complément d'adresse*</label>
+            <label className="block text-tail-blue mb-2 font-medium">Complément d'adresse<span className="text-light-tail">*</span></label>
             <input
               type="text"
               name="addressComplement"
               value={formData.addressComplement}
               onChange={handleChange}
-              className="border border-gray rounded-md w-full p-2"
+              className="border-[1.4px] border-gray rounded-md w-full p-2"
               placeholder="Enter Complément d'adresse"
             />
           </div>
-          <div className="mt-6 flex justify-between ">
-          <button className="bg-[#E5E5E5] text-gray w-1/6 px-4 py-2 rounded-md" onClick={() => navigate("/patients")}>
-            Annuler
-          </button>
-          <button type="submit" className="bg-cyan text-white px-4 py-2 w-1/6 rounded-md" >
-            Terminer
-          </button>
-        </div>
+
+          <div className="col-span-4 mt-20"> 
+<div className="flex justify-between w-full">
+  <button className="bg-[#E5E5E5] text-gray px-4 py-2 rounded-md w-64" onClick={() => navigate("/patients")}>
+    Annuler
+  </button>
+  <button type="submit" className="bg-light-tail text-white px-4 py-2 rounded-md w-64">
+    Terminer
+  </button>
+</div></div>
+
+
         </form>
 
  

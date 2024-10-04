@@ -11,6 +11,8 @@ import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { selectPatientById } from "../redux/patientSlice";
 
+
+
 const PatientProfile: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   
@@ -34,11 +36,11 @@ const PatientProfile: React.FC = () => {
           <div className="space-x-48 flex ">
             <div>
               <h2 className="text-xl text-dark-royal-blue font-bold">{patient.firstName} Mansar</h2>
-              <p className="text-dark-royal-blue font-bold">Sexe:<span className="text-light-tail font-bold"> {patient.gender}</span></p>
+              <p className="text-dark-royal-blue font-bold">Sexe<span className="text-light-tail font-bold"> {patient.gender}</span></p>
             </div>
             <div>
-              <h2 className="text-xl text-dark-royal-blue font-bold">Date de naissance:<span className="text-light-tail font-bold"> {patient.birthDate}</span></h2>
-              <p className="text-dark-royal-blue font-bold">Age: <span className="text-light-tail font-bold">{patient.gender}</span></p>
+              <h2 className="text-xl text-dark-royal-blue font-bold">Date de naissance<span className="text-light-tail font-bold"> {patient.birthDate}</span></h2>
+              <p className="text-dark-royal-blue font-bold">Age <span className="text-light-tail font-bold">{patient.gender}</span></p>
             </div>
           </div>
         </div>
