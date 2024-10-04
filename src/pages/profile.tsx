@@ -33,12 +33,12 @@ const PatientProfile: React.FC = () => {
           </div>
           <div className="space-x-48 flex ">
             <div>
-              <h2 className="text-xl font-semibold">{patient.firstName} Mansar</h2>
-              <p className="text-gray-500">Sexe: {patient.gender}</p>
+              <h2 className="text-xl text-dark-royal-blue font-bold">{patient.firstName} Mansar</h2>
+              <p className="text-dark-royal-blue font-bold">Sexe:<span className="text-light-tail font-bold"> {patient.gender}</span></p>
             </div>
             <div>
-              <h2 className="text-xl font-semibold">Date de naissance: {patient.birthDate}</h2>
-              <p className="text-gray-500">Age: {patient.gender}</p>
+              <h2 className="text-xl text-dark-royal-blue font-bold">Date de naissance:<span className="text-light-tail font-bold"> {patient.birthDate}</span></h2>
+              <p className="text-dark-royal-blue font-bold">Age: <span className="text-light-tail font-bold">{patient.gender}</span></p>
             </div>
           </div>
         </div>
@@ -48,7 +48,7 @@ const PatientProfile: React.FC = () => {
             <img src={calendar} alt="Signal Icon" className="w-6 h-6" />
             Réserver un rendez-vous
           </button>
-          <button className="bg-custom-gradient-2 text-white px-7 py-3 rounded-[36px] h-[52px] flex gap-2">
+          <button className="bg-custom-gradient-4 text-white px-7 py-3 rounded-[36px] h-[52px] flex gap-2">
             <img
               src={cons}
               alt="consultation"
@@ -59,8 +59,8 @@ const PatientProfile: React.FC = () => {
         </div>
       </div>
 
-      <div className="grid grid-cols-5 gap-8 divide-x divide-gray-300 text-gray-500 font-semibold bg-custom-gradient mt-5 w-full h-16">
-        <button className="px-4 bg-custom-gradient flex items-center space-x-2">
+      <div className="grid grid-cols-5 gap-8  divide-x divide-light-grey  shadow-custom-2 text-gray-500 font-semibold bg-white mt-5 w-full h-16">
+        <button className="px-4  flex items-center space-x-2">
           <img src={UserIcon} alt="Fiche Icon" className="w-5 h-5" />
           <span>Fiche patient</span>
         </button>

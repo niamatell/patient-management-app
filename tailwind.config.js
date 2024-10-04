@@ -22,6 +22,8 @@ module.exports = {
       'custom-gradient': 'linear-gradient(89.8deg, #E6F5FF -0.13%, #F3FAFF 23.56%, #F7FCFF 99.83%)',
       'custom-gradient-2':' linear-gradient(108.56deg, #20A8D3 5.8%, #01D1FF 122.34%)',
       'custom-gradient-3': 'linear-gradient(89.36deg, #FDFDFD 8.29%, #EEFCFD 98.21%)',
+      'custom-gradient-4':' linear-gradient(90.84deg, #2786DD 2.37%, #19C8D3 101.75%)',
+
 
 
     },
@@ -33,6 +35,7 @@ module.exports = {
       'custom-2': '0px 1px 4px 0px #00467740',
       'custom-3': "2.86px 3.81px 3.81px 0px #0D88B4",
       'custom-4': "0px 4px 4px 0px #50799E57",
+
 
     },
 
