@@ -3,7 +3,7 @@ import patientpic from "../assets/patient.svg";
 import depistage from "../assets/depistage.svg";
 import earphone from "../assets/earphone.svg";
 import heart from "../assets/heart.svg";
-import calendar from "../assets/calendar.svg";
+import editpatient from "../assets/edit-patient.svg";
 import calendrier from "../assets/calendrier.svg";
 import UserIcon from "../assets/user-circle.svg";
 import cons from "../assets/cons.svg";
@@ -13,7 +13,20 @@ import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { selectPatientById } from "../redux/patientSlice";
 
+const calculateAge = (birthDateString: string): number => {
+  const birthDate = new Date(birthDateString);
+  const today = new Date();
+  let age = today.getFullYear() - birthDate.getFullYear();
+  const monthDifference = today.getMonth() - birthDate.getMonth();
 
+  if (
+    monthDifference < 0 ||
+    (monthDifference === 0 && today.getDate() < birthDate.getDate())
+  ) {
+    age--;
+  }
+  return age;
+};
 
 const PatientProfile: React.FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -31,18 +44,23 @@ const PatientProfile: React.FC = () => {
       <div className="flex w-full justify-between items-center border-light-blue-2 bg-light-blue-1 shadow-custom-4 rounded-[16px] p-6">
         <div className="flex items-center space-x-4">
           <div className="bg-gray-200 rounded-full p-4">
-            <div className="w-12 h-12 rounded-full">
+          <div className="relative inline-block">
+            <div className=" flex items-center justify-center">
               <img src={patientpic} />
             </div>
+            <button className="absolute right-[-20px] bottom-14  p-2  ">
+            <img src={editpatient}  />
+            </button>
+          </div>
           </div>
           <div className="space-x-48 flex ">
             <div>
               <h2 className="text-xl text-dark-royal-blue font-bold">{patient.firstName} Mansar</h2>
-              <p className="text-dark-royal-blue font-bold">Sexe<span className="text-light-tail font-bold"> {patient.gender}</span></p>
+              <p className="text-dark-royal-blue font-bold">Sexe<span className="text-light-tail font-bold"> {patient.gender === 'M' ? 'Homme' : 'Femme'}</span></p>
             </div>
             <div>
               <h2 className="text-xl text-dark-royal-blue font-bold">Date de naissance<span className="text-light-tail font-bold"> {patient.birthDate}</span></h2>
-              <p className="text-dark-royal-blue font-bold">Age <span className="text-light-tail font-bold">{patient.gender}</span></p>
+              <p className="text-dark-royal-blue font-bold">Age <span className="text-light-tail font-bold">{calculateAge(patient.birthDate)} ans</span></p>
             </div>
           </div>
         </div>
@@ -111,7 +129,7 @@ const PatientProfile: React.FC = () => {
             <img src={edit} alt="edit"/>Modifier
           </button>
         </div></div>
-        <div className="grid grid-cols-5 gap-6 mt-3 ml-9 border-b border-[#DADADA] pb-4">
+        <div className="grid grid-cols-5 gap-6 mt-3 ml-9 pb-8 border-b border-[#DADADA] ">
           <div className="col-span-1">
             <p className="text-lg text-tail-blue mb-2 font-medium">CINE</p>
             <p className="text-lg">{patient.idNumber}</p>
@@ -132,7 +150,7 @@ const PatientProfile: React.FC = () => {
             <p className="text-lg text-tail-blue mb-2 font-medium">Date de naissance <span className="text-light-tail">*</span></p>
             <p className="text-lg">{patient.birthDate}</p>
           </div></div>
-          <div className="grid grid-cols-5 gap-6 mt-3 ml-9 border-b border-[#DADADA] pb-4">
+          <div className="grid grid-cols-5 gap-6 mt-3 ml-9 border-b border-[#DADADA] pb-8">
           <div className="col-span-1 ">
             <p className="text-lg text-tail-blue mb-2 font-medium">Couverture</p>
             <p className="text-lg">{patient.coverage}</p>

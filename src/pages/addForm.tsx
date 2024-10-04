@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { addPatient } from "../redux/patientSlice"; 
 import dossier from "../assets/dossier.svg";
 import { useNavigate } from "react-router-dom";
-import select from '../assets/select.svg';
+import select from '../assets/select2.svg';
 
 interface FormData {
   idNumber: string;
@@ -293,7 +293,7 @@ const AddFolder: React.FC = () => {
             />
           </div>
 
-          <div className="col-span-4 mt-20"> 
+          <div className="col-span-4 mt-40"> 
 <div className="flex justify-between w-full">
   <button className="bg-[#E5E5E5] text-gray px-4 py-2 rounded-md w-64" onClick={() => navigate("/patients")}>
     Annuler

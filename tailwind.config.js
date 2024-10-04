@@ -35,6 +35,7 @@ module.exports = {
       'custom-2': '0px 1px 4px 0px #00467740',
       'custom-3': "2.86px 3.81px 3.81px 0px #0D88B4",
       'custom-4': "0px 4px 4px 0px #50799E57",
+  
 
 
     },
