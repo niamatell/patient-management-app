@@ -7,12 +7,15 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        'light-blue-1': '#E6F5FF',
-        'light-blue-2': '#F3FAFF',
+        'light-blue-1': '#F1FAFB',
+        'light-blue-2': '#E1F4F6',
         'light-blue-3': '#F7FCFF',
         'tail-blue':'#50799E',
         'light-tail':'#1AA5C0',
         'light-grey':"#E5EBF0",
+        'gray':"#858585",
+        'dark-royal-blue': "#335D84",
+        'custom-placeholder': '#50799E26',
 
     },
     backgroundImage: {
@@ -24,6 +27,13 @@ module.exports = {
     },
     fontFamily: {
       ubuntu: ['Ubuntu', 'sans-serif'],
+    },
+    boxShadow: {
+      'custom': '0px 2px 4px 0px #00000040', 
+      'custom-2': '0px 1px 4px 0px #00467740',
+      'custom-3': "2.86px 3.81px 3.81px 0px #0D88B4",
+      'custom-4': "0px 4px 4px 0px #50799E57",
+
     },
 
 

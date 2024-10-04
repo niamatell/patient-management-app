@@ -3,18 +3,35 @@ import map from '../assets/Morrocomap.png';
 import eye from '../assets/eye.svg';
 import select from '../assets/select.svg';
 import arrows from '../assets/arrows.svg';
+import { useDispatch } from "react-redux";
+import { loginUser } from "../redux/authSlice";
+import { useNavigate } from "react-router-dom";
 
 
 
 const Login: React.FC = () => {
-    const [username, setUsername] = useState('');
-    const [password, setPassword] = useState('');
-    const [location, setLocation] = useState('UM Amezmiz');
-    const [box, setBox] = useState('BOX 1');
-  
-    const handleLogin = () => {
-      console.log({ username, password, location, box });
-    };
+  const dispatch = useDispatch();
+  const [userData, setUserData] = useState({
+    location: "UM Amezmiz",
+    box: "BOX 1",
+    username: "",
+    password: "",
+  });
+  const navigate = useNavigate();
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+  ) => {
+    setUserData({
+      ...userData,
+      [e.target.id]: e.target.value,
+    });
+  };
+
+  const handleLogin = (e: React.FormEvent) => {
+    e.preventDefault();
+    dispatch(loginUser(userData));
+    navigate("/patients");
+  };
   return (
     <div>
         <div className="relative flex  mt-10">
@@ -28,7 +45,8 @@ const Login: React.FC = () => {
           <div className="mb-4">
             <select id="location"
               className="w-full p-2 border-[1.67px] border-tail-blue rounded-[7px] h-[50px] text-light-tail appearance-none focus:outline-none focus:border-tail-blue focus:border-[2px]"
-              value={location}
+              value={userData.location}
+            onChange={handleChange}
               
             >
               <option value="UM Amezmiz">UM Amezmiz</option>
@@ -43,8 +61,8 @@ const Login: React.FC = () => {
           <div className="mb-4">
             <select id="box"
               className="w-full p-2 border-[1.67px] border-tail-blue rounded-[7px] h-[50px] text-light-tail appearance-none focus:outline-none focus:border-tail-blue focus:border-[2px]"
-              value={box} 
-              onChange={(e) => setBox(e.target.value)}
+              value={userData.box}
+            onChange={handleChange}
             >
             <option value="BOX 1">BOX 1</option>
             <option value="BOX 2">BOX 2</option>
@@ -62,8 +80,8 @@ const Login: React.FC = () => {
               type="text"
               placeholder="Entrez votre identifiant"
               className="w-full p-2 border border-tail-blue rounded-[7px] h-[50px]"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
+              value={userData.username}
+            onChange={handleChange}
               required
             />
           </div>
@@ -73,8 +91,8 @@ const Login: React.FC = () => {
               type="password"
               placeholder="Tapez votre mot de passe"
               className="w-full p-2 border border-tail-blue rounded-[7px] h-[50px]  pr-10"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              value={userData.password}
+            onChange={handleChange}
               required
             />      
             <span className="absolute right-3 top-1/2 transform -translate-y-1/2"> 
