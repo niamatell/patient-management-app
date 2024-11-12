@@ -7,6 +7,7 @@ import notif from '../assets/notif.svg';
 import wifi from '../assets/wifi.svg';
 import { useSelector } from "react-redux";
 import { RootState } from "../redux/store";
+/* Consider if this div is necessary */
 
 const Navbar: React.FC = () => {
     const [currentDate, setCurrentDate] = useState<string>('');
